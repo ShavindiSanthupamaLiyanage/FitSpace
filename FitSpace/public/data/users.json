@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "System Admin",
+    "email": "admin@fitspace.com",
+    "role": "admin",
+    "mockPassword": "demo1234"
+  },
+  {
+    "id": 2,
+    "name": "Thisal Gamage",
+    "email": "thisal@gmail.com",
+    "role": "member",
+    "mockPassword": "demo1234"
+  }
+]
