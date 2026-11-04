@@ -1,0 +1,45 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+build/
+*.local
+
+# .NET build files
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+
+# Environment and sensitive configuration
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.ntvs*
+*.njsproj
+*.sw?
+
+# Visual Studio
+*.sln.docstates
+
+# Build outputs
+artifacts/
