@@ -1,0 +1,202 @@
+/* ============ AUTH PAGE: SIGN IN / SIGN UP ============ */
+.auth-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* ----- left side: image panel ----- */
+.auth-showcase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 32px;
+  padding: 48px;
+  overflow: hidden;
+  color: #ffffff;
+  background: var(--color-navy);
+}
+.auth-showcase-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 28%;
+}
+.auth-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11, 122, 130, 0.35) 0%, rgba(11, 122, 130, 0) 65%),
+    linear-gradient(180deg, rgba(14, 42, 59, 0) 25%, rgba(14, 42, 59, 0.6) 62%, rgba(14, 42, 59, 0.94) 100%);
+}
+.auth-showcase-content {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-showcase-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  color: #ffffff;
+}
+.auth-showcase-title-accent {
+  color: var(--color-accent);
+}
+.auth-showcase-text {
+  max-width: 420px;
+  margin: 0;
+  font-size: 16px;
+  color: #dbe8ec;
+}
+
+.auth-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 24px 28px;
+  list-style: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+.auth-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.auth-stat-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #cfe0e4;
+}
+
+/* ----- right side: form card ----- */
+.auth-panel {
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  background: var(--color-bg);
+}
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 36px;
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-strong);
+}
+.auth-card-title {
+  margin-bottom: 24px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 24px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--color-bg);
+}
+.auth-tab {
+  padding: 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.auth-tab[aria-selected='true'] {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+/* form fields inside the card */
+.auth-card .form-label {
+  font-size: 13px;
+  color: var(--color-navy);
+}
+.auth-card .form-input::placeholder {
+  color: #7b8994;
+}
+.auth-forgot-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.auth-forgot-link:hover {
+  text-decoration: underline;
+}
+.auth-terms {
+  margin: 24px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: var(--color-muted);
+}
+.auth-terms a {
+  font-weight: 700;
+  color: var(--color-navy);
+  text-decoration: none;
+}
+.auth-terms a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+  .auth-showcase {
+    display: none;
+  }
+  .auth-panel {
+    padding: 32px 16px;
+  }
+  .auth-card {
+    padding: 28px 20px;
+  }
+}/* ----- forgot password page ----- */
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  text-decoration: none;
+}
+.auth-back-link:hover {
+  color: var(--color-primary);
+}
+.auth-card-heading {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+.auth-card-description {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
