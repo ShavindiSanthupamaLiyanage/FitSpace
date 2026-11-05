@@ -19,7 +19,7 @@ function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
   useEffect(() => {
     if (user && !valid) {
       signOut();
-      showToast('warning', 'Your session expired. Please sign in again.');
+      showToast('warning', 'Session expired', { description: 'Please sign in again to continue.' });
     }
   }, [user, valid, signOut, showToast]);
 

@@ -55,7 +55,7 @@ function Navbar() {
     signOut();
     setConfirmOpen(false);
     closeMenu();
-    showToast('success', 'You have been signed out.');
+    showToast('success', 'Signed out', { description: 'See you at your next class.' });
     navigate('/');
   };
 

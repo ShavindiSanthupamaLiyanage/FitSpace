@@ -24,3 +24,15 @@ export const validateConfirmPassword = (password: string, confirm: string): stri
   if (password !== confirm) return 'Passwords do not match';
   return '';
 };
+
+export const validateSubject = (value: string): string => {
+  if (!value.trim()) return 'Subject is required';
+  if (value.trim().length < 3) return 'Subject must be at least 3 characters';
+  return '';
+};
+
+export const validateMessage = (value: string): string => {
+  if (!value.trim()) return 'Message is required';
+  if (value.trim().length < 10) return 'Message must be at least 10 characters';
+  return '';
+};

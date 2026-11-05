@@ -105,7 +105,7 @@ function ForgotPasswordForm() {
     setFormError('');
     try {
       await resetPassword(normalisedEmail, values.newPassword);
-      showToast('success', 'Password changed successfully. Please sign in with your new password.');
+      showToast('success', 'Password changed', { description: 'Sign in with your new password.' });
       navigate('/login', { replace: true });
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Something went wrong');

@@ -45,7 +45,7 @@ function RegisterForm({ onRegistered }: RegisterFormProps) {
     setFormError('');
     try {
       await register(values.name, values.email, values.password);
-      showToast('success', 'Account created! You can sign in now.');
+      showToast('success', 'Account created', { description: 'You can sign in now.' });
       onRegistered();
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Something went wrong');

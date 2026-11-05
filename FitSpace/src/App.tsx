@@ -26,7 +26,6 @@ function App() {
 
         {/* Footer pages: placeholders until the real content is written */}
         <Route path="/about" element={<UnderConstruction title="About Us" />} />
-        <Route path="/contact" element={<UnderConstruction title="Contact Us" />} />
         <Route path="/privacy-policy" element={<UnderConstruction title="Privacy Policy" />} />
         <Route path="/terms-of-service" element={<UnderConstruction title="Terms of Service" />} />
       

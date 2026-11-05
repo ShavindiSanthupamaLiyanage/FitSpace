@@ -18,9 +18,40 @@ export interface AuthSession {
 }
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
+export type ToastSurface = 'light' | 'dark';
+export type ToastDuration = 'short' | 'normal' | 'long' | 'persistent';
+
+export interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
+export interface ToastOptions {
+  description?: string;
+  action?: ToastAction;
+  duration?: ToastDuration;
+  surface?: ToastSurface;
+}
 
 export interface ToastMessage {
   id: number;
   type: ToastType;
+  message: string;
+  description?: string;
+  action?: ToastAction;
+  duration: ToastDuration;
+  surface: ToastSurface;
+}
+
+export type ClassCategoryName = 'Yoga' | 'HIIT' | 'Spin' | 'Pilates' | 'Boxing' | 'Zumba';
+
+export interface ScrollTargetState {
+  scrollTo?: string; // id of the section to scroll to after navigating
+}
+
+export interface ContactMessage {
+  name: string;
+  email: string;
+  subject: string;
   message: string;
 }

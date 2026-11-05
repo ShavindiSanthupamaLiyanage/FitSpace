@@ -1,0 +1,188 @@
+/* ============ TOASTS ============ */
+.toast-container {
+  position: fixed;
+  top: calc(var(--header-height) + 12px);
+  right: 16px;
+  z-index: 2500;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none; /* only the cards themselves catch clicks */
+}
+
+.toast {
+  /* Colours for each type are set by .toast-success / -info / -warning / -error below */
+  --toast-accent: var(--color-primary);
+  --toast-accent-text: #0b7a82;
+  --toast-icon-color: #ffffff;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 14px 12px 18px 14px;
+  overflow: hidden;
+  pointer-events: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  color: var(--color-navy);
+  box-shadow: var(--shadow-strong);
+  animation: toast-enter 0.25s ease;
+}
+
+/* ----- the four types ----- */
+.toast-success {
+  --toast-accent: #2e9e6b;
+  --toast-accent-text: #1b7a4f;
+  border-color: #cfe9dc;
+}
+.toast-info {
+  --toast-accent: #0b7a82;
+  --toast-accent-text: #0b7a82;
+  border-color: #cde5e6;
+}
+.toast-warning {
+  --toast-accent: #e0a100;
+  --toast-accent-text: #8a6100;
+  --toast-icon-color: #0e2a3b; /* navy on amber: white would be too faint */
+  border-color: #f3e2b3;
+}
+.toast-error {
+  --toast-accent: #d93636;
+  --toast-accent-text: #b42323;
+  border-color: #f4c9c9;
+}
+
+/* ----- the dark surface ----- */
+.toast-surface-dark {
+  background: var(--color-navy);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.toast-surface-dark.toast-success { --toast-accent-text: #5fd39b; }
+.toast-surface-dark.toast-info { --toast-accent-text: #4fd1c5; }
+.toast-surface-dark.toast-warning { --toast-accent-text: #f2c14e; }
+.toast-surface-dark.toast-error { --toast-accent-text: #ff8f86; }
+.toast-surface-dark .toast-description {
+  color: #b9cbd3;
+}
+.toast-surface-dark .toast-close {
+  color: #a9bcc6;
+}
+.toast-surface-dark .toast-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.toast-surface-dark :focus-visible {
+  outline-color: #ffffff;
+}
+
+/* ----- content ----- */
+.toast-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--toast-accent);
+  color: var(--toast-icon-color);
+  font-size: 20px;
+}
+.toast-body {
+  min-width: 0;
+  padding-top: 1px;
+}
+.toast-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.toast-description {
+  margin: 2px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+.toast-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+.toast-action {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--toast-accent-text);
+  cursor: pointer;
+}
+.toast-action:hover {
+  text-decoration: underline;
+}
+.toast-close {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 18px;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.toast-close:hover {
+  background: var(--color-tint);
+  color: var(--color-navy);
+}
+
+/* ----- countdown bar ----- */
+.toast-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--toast-accent);
+  transform-origin: left center;
+  animation: toast-countdown linear forwards;
+}
+/* These times must match TOAST_DURATION_MS in constants/toastSettings.ts */
+.toast-progress-short { animation-duration: 3000ms; }
+.toast-progress-normal { animation-duration: 4500ms; }
+.toast-progress-long { animation-duration: 7000ms; }
+.toast-paused .toast-progress {
+  animation-play-state: paused;
+}
+
+@keyframes toast-enter {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toast-countdown {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+  .toast-close {
+    transition: none;
+  }
+}
+@media (max-width: 480px) {
+  .toast-container {
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
+}
