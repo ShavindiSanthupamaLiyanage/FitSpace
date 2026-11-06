@@ -1,0 +1,183 @@
+/* ============ CONFIRM DIALOG ============ */
+body.dialog-open {
+  overflow: hidden;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(14, 42, 59, 0.65);
+  backdrop-filter: blur(4px);
+  animation: dialog-fade-in 0.2s ease;
+}
+
+.dialog {
+  /* Colours for the icon tile, changed by the tone classes below */
+  --dialog-tone-bg: var(--color-tint);
+  --dialog-tone-color: var(--color-primary);
+
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-strong);
+  animation: dialog-pop-in 0.22s ease;
+}
+.dialog-warning {
+  --dialog-tone-bg: #fdf3d6;
+  --dialog-tone-color: #8a6100;
+}
+.dialog-danger {
+  --dialog-tone-bg: #fdecec;
+  --dialog-tone-color: var(--color-danger);
+}
+
+/* ----- header: icon, text, close button ----- */
+.dialog-body {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  padding: 24px 20px 20px 24px;
+}
+.dialog-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--dialog-tone-bg);
+  color: var(--dialog-tone-color);
+  font-size: 24px;
+}
+.dialog-title {
+  margin: 2px 0 6px;
+  font-size: 20px;
+}
+.dialog-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+.dialog-content .form-group {
+  margin: 16px 0 0;
+}
+.dialog-close {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 20px;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dialog-close:hover:not(:disabled) {
+  background: var(--color-tint);
+  color: var(--color-navy);
+}
+.dialog-close:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ----- footer: the two buttons ----- */
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+.dialog-footer .btn-light {
+  border-color: var(--color-border);
+}
+
+/* ----- content you can place inside the dialog ----- */
+.dialog-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+.dialog-detail-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.dialog-detail-text {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+.dialog-detail-badge {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-tint);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.dialog-notice {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #e8f6ee;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1b5e3f;
+}
+
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes dialog-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dialog-backdrop,
+  .dialog {
+    animation: none;
+  }
+}
+@media (max-width: 480px) {
+  .dialog-body {
+    gap: 12px;
+    padding: 20px 16px 16px 20px;
+  }
+  .dialog-footer {
+    flex-direction: column-reverse;
+    padding: 16px 20px;
+  }
+  .dialog-footer .btn {
+    width: 100%;
+  }
+}

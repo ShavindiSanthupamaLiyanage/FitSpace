@@ -55,3 +55,67 @@ export interface ContactMessage {
   subject: string;
   message: string;
 }
+
+export type ClassLevel = 'Beginner' | 'Intermediate' | 'Advanced';
+export type CategoryFilter = ClassCategoryName | 'All';
+export type LevelFilter = ClassLevel | 'All';
+export type SortOption = 'soonest' | 'duration' | 'spots' | 'price';
+
+// One record exactly as it is stored in public/data/classes.json
+export interface ClassRecord {
+  id: number;
+  title: string;
+  category: ClassCategoryName;
+  level: ClassLevel;
+  instructor: string;
+  instructorYears: number;
+  dayOffset: number; // days from today, turned into a real date by classService
+  startTime: string; // 24-hour "HH:MM"
+  durationMins: number;
+  room: string;
+  capacity: number;
+  spotsLeft: number;
+  price: number;
+  rating: number;
+  reviews: number;
+  description: string;
+}
+
+export interface FitnessClass extends Omit<ClassRecord, 'dayOffset'> {
+  date: string; // ISO date, "YYYY-MM-DD"
+}
+
+export interface ClassFilters {
+  search: string;
+  category: CategoryFilter;
+  level: LevelFilter;
+  sort: SortOption;
+  page: number;
+}
+
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+export type DialogTone = 'primary' | 'warning' | 'danger';
+export type ButtonVariant = 'primary' | 'accent' | 'outline' | 'light' | 'danger' | 'warning';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+export type BookingStatus = 'Confirmed' | 'Cancelled';
+
+export interface Booking {
+  id: number;
+  classId: number;
+  memberName: string;
+  email: string;
+  spots: number;
+  bookingDate: string; // ISO timestamp
+  status: BookingStatus;
+}
+
+export interface BookingRequest {
+  classId: number;
+  memberName: string;
+  email: string;
+  spots: number;
+}

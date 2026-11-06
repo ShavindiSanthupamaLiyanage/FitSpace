@@ -36,3 +36,11 @@ export const validateMessage = (value: string): string => {
   if (value.trim().length < 10) return 'Message must be at least 10 characters';
   return '';
 };
+
+export const validateSpots = (spots: number, maxSpots: number): string => {
+  if (!Number.isInteger(spots) || spots < 1) return 'Choose at least 1 spot';
+  if (spots > maxSpots) {
+    return `You can book up to ${maxSpots} ${maxSpots === 1 ? 'spot' : 'spots'} for this class`;
+  }
+  return '';
+};

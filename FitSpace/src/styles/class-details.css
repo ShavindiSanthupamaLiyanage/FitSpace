@@ -1,0 +1,283 @@
+/* ============ CLASS DETAILS PAGE ============ */
+.class-details {
+  padding-top: 28px;
+  padding-bottom: 88px;
+}
+.class-details-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+  margin-top: 20px;
+}
+.class-details-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.class-details-aside {
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+}
+.container.class-details {
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+@media (max-width: 960px) {
+  .class-details-layout {
+    grid-template-columns: 1fr;
+  }
+  .class-details-aside {
+    position: static;
+  }
+}
+
+/* ----- hero ----- */
+.class-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 340px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--color-navy);
+  color: #ffffff;
+  box-shadow: var(--shadow-strong);
+}
+.class-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.class-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 42, 59, 0) 30%, rgba(14, 42, 59, 0.9) 100%);
+}
+.class-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+}
+.class-hero-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.class-hero-title {
+  margin: 0 0 8px;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #ffffff;
+}
+.class-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin: 0;
+  font-size: 14px;
+  color: #e6eef1;
+}
+.class-hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.class-hero-star {
+  color: #f2c14e;
+}
+
+/* ----- description, what to bring, instructor ----- */
+.detail-card {
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.detail-card-title {
+  margin: 0 0 14px;
+  font-size: 24px;
+}
+.detail-card-subtitle {
+  margin: 24px 0 12px;
+  font-size: 18px;
+}
+.detail-card p {
+  margin: 0 0 14px;
+}
+.bring-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bring-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.bring-list-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--color-success);
+}
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.instructor-avatar {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.instructor-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.instructor-role {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* ----- booking panel ----- */
+.booking-panel {
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-strong);
+}
+.booking-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.booking-panel-title {
+  margin: 0;
+  font-size: 22px;
+}
+.booking-panel .availability-badge {
+  background: var(--color-bg);
+  box-shadow: none;
+}
+.booking-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+.booking-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--color-bg);
+}
+.booking-summary-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.booking-summary-icon {
+  font-size: 18px;
+  color: var(--color-primary);
+}
+.booking-summary-value {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--color-navy);
+}
+
+.price-breakdown {
+  margin: 0 0 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.price-row dt,
+.price-row dd {
+  margin: 0;
+}
+.price-row dd {
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.price-row-total {
+  align-items: baseline;
+  margin: 16px 0 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.price-row-total dd {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+.booking-terms {
+  margin: 14px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: var(--color-muted);
+}
+.booking-terms a {
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+@media (max-width: 480px) {
+  .detail-card {
+    padding: 20px;
+  }
+  .bring-list {
+    grid-template-columns: 1fr;
+  }
+  .class-hero {
+    min-height: 280px;
+  }
+}

@@ -1,106 +1,197 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import type { IconType } from 'react-icons';
+import {
+  MdClose,
+  MdOutlineDeleteOutline,
+  MdOutlineHelpOutline,
+  MdWarningAmber,
+} from 'react-icons/md';
 import Button from './Button';
+import type { ButtonVariant, DialogTone } from '../../types';
+import '../../styles/dialog.css';
 
 interface ConfirmDialogProps {
   open: boolean;
   title: string;
   message: string;
+  tone?: DialogTone;
+  Icon?: IconType; // replaces the default icon of the chosen tone
   confirmText?: string;
   cancelText?: string;
-  variant?: 'primary' | 'danger';
+  loading?: boolean; // the confirmed action is running
+  loadingText?: string; // e.g. "Cancelling..."
+  confirmDisabled?: boolean; // e.g. until the user types the confirmation word
+  children?: ReactNode; // extra content between the message and the buttons
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-// Reusable popup for "Are you sure?" actions: submit, update, delete, logout...
+const toneIcons: Record<DialogTone, IconType> = {
+  primary: MdOutlineHelpOutline,
+  warning: MdWarningAmber,
+  danger: MdOutlineDeleteOutline,
+};
+
+const confirmButtonVariants: Record<DialogTone, ButtonVariant> = {
+  primary: 'primary',
+  warning: 'warning',
+  danger: 'danger',
+};
+
+const FOCUSABLE_SELECTOR = [
+  'button:not(:disabled)',
+  'input:not(:disabled)',
+  'select:not(:disabled)',
+  'textarea:not(:disabled)',
+  'a[href]',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
+  container ? Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)) : [];
+
+// Reusable popup for "Are you sure?" moments: logging out, booking, cancelling, deleting...
 function ConfirmDialog({
   open,
   title,
   message,
+  tone = 'primary',
+  Icon,
   confirmText = 'Confirm',
   cancelText = 'Cancel',
-  variant = 'primary',
+  loading = false,
+  loadingText,
+  confirmDisabled = false,
+  children,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
-  const confirmRef = useRef<HTMLButtonElement>(null);
+  const titleId = useId();
+  const messageId = useId();
 
+  // Runs only when the dialog opens or closes: move focus in, lock page scroll,
+  // and give focus back to the button that opened the dialog
   useEffect(() => {
-    if (!open) return;
+    if (!open) return undefined;
 
-    confirmRef.current?.focus();
+    const previouslyFocused =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    dialogRef.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus();
+    document.body.classList.add('dialog-open');
+
+    return () => {
+      document.body.classList.remove('dialog-open');
+      previouslyFocused?.focus();
+    };
+  }, [open]);
+
+  // Keyboard: Esc closes the dialog, Tab stays inside it
+  useEffect(() => {
+    if (!open) return undefined;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onCancel();
+        if (!loading) onCancel();
         return;
       }
-      // Simple focus trap: keep Tab inside the dialog
-      if (event.key === 'Tab' && dialogRef.current) {
-        const focusable = dialogRef.current.querySelectorAll<HTMLElement>('button');
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
+      if (event.key !== 'Tab') return;
+
+      const focusable = getFocusableElements(dialogRef.current);
+      if (focusable.length === 0) {
+        event.preventDefault(); // everything is disabled while loading
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const focusIsOutside = !dialogRef.current?.contains(document.activeElement);
+
+      if (event.shiftKey && (document.activeElement === first || focusIsOutside)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || focusIsOutside)) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, onCancel]);
+  }, [open, loading, onCancel]);
 
   if (!open) return null;
 
-  return (
-    <div className="dialog-backdrop" onClick={onCancel}>
+  const DialogIcon = Icon ?? toneIcons[tone];
+
+  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget && !loading) onCancel();
+  };
+
+  // Rendered on <body> so the navbar's blur effect cannot trap the fixed overlay
+  return createPortal(
+    <div className="dialog-backdrop" onClick={handleBackdropClick}>
       <div
         ref={dialogRef}
-        className="dialog"
+        className={`dialog dialog-${tone}`}
         role="alertdialog"
         aria-modal="true"
-        aria-labelledby="dialog-title"
-        aria-describedby="dialog-message"
-        onClick={(e) => e.stopPropagation()}
+        aria-labelledby={titleId}
+        aria-describedby={messageId}
       >
-        <h2 id="dialog-title">{title}</h2>
-        <p id="dialog-message">{message}</p>
-                <div className="dialog-actions">
-          <Button variant="outline" onClick={onCancel}>
-            {cancelText}
-          </Button>
+        <div className="dialog-body">
+          <span className="dialog-icon" aria-hidden="true">
+            <DialogIcon />
+          </span>
+
+          <div className="dialog-content">
+            <h2 id={titleId} className="dialog-title">
+              {title}
+            </h2>
+            <p id={messageId} className="dialog-message">
+              {message}
+            </p>
+            {children}
+          </div>
+
           <button
-            ref={confirmRef}
             type="button"
-            className={`btn btn-${variant}`}
-            onClick={onConfirm}
+            className="dialog-close"
+            aria-label="Close dialog"
+            disabled={loading}
+            onClick={onCancel}
           >
-            {confirmText}
+            <MdClose aria-hidden="true" />
           </button>
         </div>
+
+        <div className="dialog-footer">
+          {/* Risky actions start on the safe choice, everything else on the main action */}
+          <Button
+            variant="light"
+            disabled={loading}
+            onClick={onCancel}
+            data-autofocus={tone === 'danger' ? '' : undefined}
+          >
+            {cancelText}
+          </Button>
+          <Button
+            variant={confirmButtonVariants[tone]}
+            loading={loading}
+            loadingText={loadingText}
+            disabled={confirmDisabled}
+            onClick={onConfirm}
+            data-autofocus={tone === 'danger' ? undefined : ''}
+          >
+            {confirmText}
+          </Button>
+        </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
 export default ConfirmDialog;
-
-
-        // <div className="dialog-actions">
-        //   <Button variant="outline" onClick={onCancel}>
-        //     {cancelText}
-        //   </Button>
-        //   <button
-        //     ref={confirmRef}
-        //     type="button"
-        //     className={`btn btn-${variant}`}
-        //     onClick={onConfirm}
-        //   >
-        //     {confirmText}
-        //   </button>
-        // </div>

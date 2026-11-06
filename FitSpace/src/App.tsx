@@ -5,7 +5,6 @@ import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import ClassesPage from './pages/ClassesPage';
 import ClassDetailsPage from './pages/ClassDetailsPage';
-import BookClassPage from './pages/BookClassPage';
 import MyBookingsPage from './pages/MyBookingsPage';
 import ProfilePage from './pages/ProfilePage';
 import ManageClassesPage from './pages/ManageClassesPage';
@@ -33,7 +32,6 @@ function App() {
 
         {/* Any logged-in user (member or admin) */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/classes/:id/book" element={<BookClassPage />} />
           <Route path="/my-bookings" element={<MyBookingsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>

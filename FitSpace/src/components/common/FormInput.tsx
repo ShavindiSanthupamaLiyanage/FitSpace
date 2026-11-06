@@ -9,6 +9,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   hint?: string; // optional helper or status text under the input
   hintTone?: HintTone;
   labelAction?: ReactNode; // optional extra element on the right of the label
+  hideLabel?: boolean; // keeps the label for screen readers but hides it visually
 }
 
 function FormInput({
@@ -18,6 +19,7 @@ function FormInput({
   hint,
   hintTone = 'neutral',
   labelAction,
+  hideLabel = false,
   ...rest
 }: FormInputProps) {
   const errorId = `${id}-error`;
@@ -33,7 +35,7 @@ function FormInput({
   return (
     <div className="form-group">
       <div className="form-label-row">
-        <label htmlFor={id} className="form-label">
+        <label htmlFor={id} className={hideLabel ? 'form-label visually-hidden' : 'form-label'}>
           {label}
         </label>
         {labelAction}

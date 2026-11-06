@@ -1,0 +1,137 @@
+/* ============ CLASS CARD ============ */
+.class-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+.class-card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-navy);
+}
+.class-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.class-card:hover .class-card-image {
+  transform: scale(1.05);
+}
+.class-card-media .availability-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.class-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+}
+.class-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.class-card-title {
+  margin: 0;
+  font-size: 20px;
+}
+.class-card-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+.class-card-title-link:hover {
+  color: var(--color-primary);
+}
+.class-card-price {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-accent-text);
+}
+.class-card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 0 0 16px;
+  overflow: hidden;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.class-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+.class-card-meta li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.class-card-meta-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--color-primary);
+}
+.class-card-actions {
+  margin-top: auto;
+}
+
+/* ============ AVAILABILITY BADGE ============ */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-navy);
+  box-shadow: 0 2px 8px rgba(14, 42, 59, 0.15);
+}
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+.availability-almost-full .availability-dot {
+  background: var(--color-warning);
+}
+.availability-full .availability-dot {
+  background: var(--color-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .class-card,
+  .class-card-image {
+    transition: none;
+  }
+  .class-card:hover,
+  .class-card:hover .class-card-image {
+    transform: none;
+  }
+}

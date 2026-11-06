@@ -1,0 +1,104 @@
+/* ============ CHIPS ============ */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip {
+  padding: 9px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.chip[aria-pressed='true'] {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #ffffff;
+}
+
+/* ============ PAGINATION ============ */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pagination-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.pagination-button:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.pagination-button[aria-current='page'] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+.pagination-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.pagination-gap {
+  width: 24px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============ BREADCRUMB ============ */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.breadcrumb li + li::before {
+  content: '›';
+  margin-right: 8px;
+}
+.breadcrumb a {
+  font-weight: 500;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.breadcrumb [aria-current='page'] {
+  font-weight: 600;
+  color: var(--color-navy);
+}

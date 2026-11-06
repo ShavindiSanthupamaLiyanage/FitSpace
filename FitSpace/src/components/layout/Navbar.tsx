@@ -5,6 +5,7 @@ import { useAuthStore } from '../../store/authStore.ts';
 import { useToastStore } from '../../store/toastStore';
 import ConfirmDialog from '../common/ConfirmDialog';
 import type { Role } from '../../types';
+import { MdLogout } from 'react-icons/md';
 
 interface NavItem {
   to: string;
@@ -112,9 +113,11 @@ function Navbar() {
 
       <ConfirmDialog
         open={confirmOpen}
-        title="Log out?"
-        message="Are you sure you want to log out of FitSpace?"
-        confirmText="Yes, log out"
+        Icon={MdLogout}
+        title="Log out of FitSpace?"
+        message="You will need to sign in again to book classes or see your bookings."
+        confirmText="Log out"
+        cancelText="Stay signed in"
         onConfirm={handleLogout}
         onCancel={() => setConfirmOpen(false)}
       />

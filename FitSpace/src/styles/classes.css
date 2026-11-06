@@ -1,0 +1,197 @@
+/* ============ CLASSES PAGE ============ */
+.classes-hero {
+  position: relative;
+  padding: 72px 0 80px;
+  text-align: center;
+  color: #ffffff;
+  background: var(--color-navy) url('../assets/explore_class_banner.png') center / cover no-repeat;
+}
+/* Tint over the banner so it matches the FitSpace navy. Delete this rule if the banner already fits. */
+.classes-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 42, 59, 0.55);
+}
+.classes-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.classes-hero-title {
+  margin-bottom: 12px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: #ffffff;
+}
+.classes-hero-title-accent {
+  color: var(--color-accent);
+}
+.classes-hero-text {
+  max-width: 520px;
+  margin: 0 auto 32px;
+  font-size: 17px;
+  color: #dbe8ec;
+}
+
+/* ----- search bar ----- */
+.class-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 8px 8px 20px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-strong);
+  text-align: left;
+}
+.class-search:focus-within {
+  box-shadow: 0 0 0 4px rgba(79, 209, 197, 0.55), var(--shadow-strong);
+}
+.class-search-field,
+.class-search-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.class-search-field {
+  flex: 1;
+}
+.class-search-category {
+  padding-left: 16px;
+  border-left: 1px solid var(--color-border);
+}
+.class-search-icon {
+  flex-shrink: 0;
+  font-size: 22px;
+  color: var(--color-primary);
+}
+.class-search .form-group {
+  flex: 1;
+  margin: 0;
+}
+.class-search .form-label-row {
+  margin: 0;
+}
+.class-search .form-input {
+  min-width: 0;
+  padding: 10px 4px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.class-search .form-input:focus {
+  background: transparent;
+  box-shadow: none;
+}
+.class-search-category .form-input {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .classes-hero {
+    padding: 48px 0 56px;
+  }
+  .class-search {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 16px 16px;
+    border-radius: 24px;
+  }
+  .class-search-field {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .class-search-category {
+    padding: 8px 0 12px;
+    border-left: 0;
+  }
+  .class-search .btn {
+    width: 100%;
+  }
+}
+
+/* ----- toolbar and notes ----- */
+.classes-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 0 8px;
+}
+.class-sort .form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+.class-sort .form-label {
+  margin: 0;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+.class-sort .form-input {
+  width: auto;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 14px;
+  font-weight: 600;
+}
+.classes-demo-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-small);
+  background: var(--color-tint);
+  font-size: 13px;
+  color: var(--color-navy);
+}
+
+/* ----- results ----- */
+.classes-results {
+  padding: 20px 0 88px;
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+.classes-count {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 0 0 40px;
+  padding: 0;
+  list-style: none;
+}
+.class-grid > li {
+  display: flex;
+}
+.class-grid > li > * {
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .class-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .class-grid {
+    grid-template-columns: 1fr;
+  }
+  .classes-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
