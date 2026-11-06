@@ -105,6 +105,7 @@ export type BookingStatus = 'Confirmed' | 'Cancelled';
 
 export interface Booking {
   id: number;
+  userId: number; // the signed-in member who owns this booking
   classId: number;
   memberName: string;
   email: string;
@@ -114,8 +115,36 @@ export interface Booking {
 }
 
 export interface BookingRequest {
+  userId: number;
   classId: number;
   memberName: string;
   email: string;
   spots: number;
+}
+
+// One record exactly as stored in public/data/bookings.json
+export interface BookingRecord {
+  id: number;
+  userId: number;
+  classId: number;
+  memberName: string;
+  email: string;
+  spots: number;
+  bookedDaysAgo: number; // turned into a real date by bookingService
+  status: BookingStatus;
+}
+
+export interface BookingWithClass extends Booking {
+  fitnessClass: FitnessClass;
+}
+
+export type BookingDisplayStatus = 'confirmed' | 'completed' | 'cancelled';
+export type BookingTab = 'upcoming' | 'past';
+
+export interface BookingStats {
+  upcomingTotal: number;
+  upcomingThisWeek: number;
+  completedTotal: number;
+  completedLast30Days: number;
+  streakWeeks: number;
 }

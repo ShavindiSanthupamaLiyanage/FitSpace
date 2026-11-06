@@ -1,0 +1,159 @@
+/* ============ MY BOOKINGS ============ */
+/* Both classes are written so this beats .container, which loads later */
+.container.my-bookings {
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+.my-bookings-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.my-bookings-title {
+  margin: 0 0 4px;
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 800;
+}
+.my-bookings-subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+/* ----- list of booking cards ----- */
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* ----- empty state: span the full page width, like the booking cards ----- */
+/* Scoped here because .state-panel is shared with other pages that keep it narrow */
+.my-bookings .state-panel {
+  max-width: none;
+  margin: 8px 0 0;
+  padding: 72px 28px;
+}
+.booking-card {
+  display: grid;
+  grid-template-columns: 116px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.booking-card-media {
+  width: 116px;
+  height: 84px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--color-navy);
+}
+.booking-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.booking-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.booking-card-category {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+.booking-status {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.booking-status-confirmed {
+  background: #e8f6ee;
+  color: #1b5e3f;
+}
+.booking-status-completed {
+  background: var(--color-tint);
+  color: var(--color-primary-dark);
+}
+.booking-status-cancelled {
+  background: #fdecec;
+  color: #a12626;
+}
+.booking-card-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+.booking-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.booking-card-meta li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.booking-card-meta-icon {
+  flex-shrink: 0;
+  font-size: 17px;
+  color: var(--color-primary);
+}
+
+/* ----- View Class / Cancel buttons ----- */
+.booking-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 124px;
+}
+.booking-card-actions .btn {
+  width: 100%;
+}
+.booking-card-actions .btn-light {
+  border-color: var(--color-border);
+  background: var(--color-bg);
+}
+.booking-card-actions .booking-cancel {
+  background: var(--color-surface);
+  color: #b42323; /* dark red: readable on white */
+}
+
+@media (max-width: 720px) {
+  .booking-card {
+    grid-template-columns: 88px 1fr;
+    gap: 14px;
+  }
+  .booking-card-media {
+    width: 88px;
+    height: 72px;
+  }
+  .booking-card-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .booking-card-actions .btn {
+    flex: 1;
+  }
+}

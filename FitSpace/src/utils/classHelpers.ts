@@ -88,3 +88,12 @@ export const getAvailabilityStatus = (spotsLeft: number): AvailabilityStatus => 
 
 export const countAttendees = (fitnessClass: FitnessClass): number =>
   fitnessClass.capacity - fitnessClass.spotsLeft;
+
+// ----- upcoming or past -----
+export const getClassStart = (fitnessClass: Pick<FitnessClass, 'date' | 'startTime'>): Date =>
+  new Date(`${fitnessClass.date}T${fitnessClass.startTime}:00`);
+
+export const isClassUpcoming = (
+  fitnessClass: Pick<FitnessClass, 'date' | 'startTime'>,
+  now: Date = new Date(),
+): boolean => getClassStart(fitnessClass).getTime() > now.getTime();

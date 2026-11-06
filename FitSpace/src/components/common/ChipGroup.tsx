@@ -10,11 +10,22 @@ interface ChipGroupProps<T extends string> {
   options: ChipOption<T>[];
   selected: T;
   onSelect: (value: T) => void;
+  variant?: 'chips' | 'segmented'; // "segmented" is the joined pill toggle
 }
 
-function ChipGroup<T extends string>({ label, options, selected, onSelect }: ChipGroupProps<T>) {
+function ChipGroup<T extends string>({
+  label,
+  options,
+  selected,
+  onSelect,
+  variant = 'chips',
+}: ChipGroupProps<T>) {
   return (
-    <div className="chip-group" role="group" aria-label={label}>
+    <div
+      className={variant === 'segmented' ? 'chip-group chip-group-segmented' : 'chip-group'}
+      role="group"
+      aria-label={label}
+    >
       {options.map((option) => (
         <button
           key={option.value}

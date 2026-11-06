@@ -16,6 +16,7 @@ import type { FitnessClass, SelectOption } from '../../types';
 import { MdOutlineCalendarToday } from 'react-icons/md';
 
 interface BookingFormProps {
+    userId: number;
     fitnessClass: FitnessClass;
     initialName: string;
     initialEmail: string;
@@ -24,7 +25,7 @@ interface BookingFormProps {
 
 type FieldName = 'name' | 'email';
 
-function BookingForm({ fitnessClass, initialName, initialEmail, onBooked }: BookingFormProps) {
+function BookingForm({ userId, fitnessClass, initialName, initialEmail, onBooked }: BookingFormProps) {
     const navigate = useNavigate();
     const showToast = useToastStore((state) => state.showToast);
 
@@ -69,6 +70,7 @@ function BookingForm({ fitnessClass, initialName, initialEmail, onBooked }: Book
 
         try {
             await createBooking({
+                userId,
                 classId: fitnessClass.id,
                 memberName: values.name.trim(),
                 email: values.email.trim(),

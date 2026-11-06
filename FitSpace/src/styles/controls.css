@@ -26,6 +26,29 @@
   color: #ffffff;
 }
 
+/* Joined pill toggle, used for Upcoming / Past Classes */
+.chip-group-segmented {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 4px;
+  border-radius: 999px;
+  background: #ece7dc;
+}
+.chip-group-segmented .chip {
+  padding: 9px 22px;
+  border: 0;
+  background: transparent;
+}
+.chip-group-segmented .chip:hover {
+  color: var(--color-navy);
+}
+.chip-group-segmented .chip[aria-pressed='true'] {
+  background: var(--color-surface);
+  color: var(--color-navy);
+  box-shadow: 0 2px 8px rgba(14, 42, 59, 0.12);
+}
+
 /* ============ PAGINATION ============ */
 .pagination {
   display: flex;

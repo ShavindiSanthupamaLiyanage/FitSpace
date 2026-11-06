@@ -43,13 +43,11 @@ export const formatTimeRange = (
   return `${formatClockTime(start)} – ${formatClockTime(start + durationMins)}`;
 };
 
-export const formatPrice = (amount: number, withCents = false): string =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: withCents ? 2 : 0,
-    maximumFractionDigits: withCents ? 2 : 0,
-  }).format(amount);
+export const formatPrice = (amount: number, withDecimals = false): string =>
+  `Rs. ${new Intl.NumberFormat("en-LK", {
+    minimumFractionDigits: withDecimals ? 2 : 0,
+    maximumFractionDigits: withDecimals ? 2 : 0,
+  }).format(amount)}`;
 
 export const getInitials = (fullName: string): string =>
   fullName

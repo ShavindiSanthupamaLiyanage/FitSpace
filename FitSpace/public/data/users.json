@@ -12,5 +12,26 @@
     "email": "thisal@gmail.com",
     "role": "member",
     "mockPassword": "demo1234"
+  },
+  {
+    "id": 3,
+    "name": "Ayesha Perera",
+    "email": "ayesha@gmail.com",
+    "role": "member",
+    "mockPassword": "demo1234"
+  },
+  {
+    "id": 4,
+    "name": "Kavindu Silva",
+    "email": "kavindu@gmail.com",
+    "role": "member",
+    "mockPassword": "demo1234"
+  },
+  {
+    "id": 5,
+    "name": "Nadeesha Fernando",
+    "email": "nadeesha@gmail.com",
+    "role": "member",
+    "mockPassword": "demo1234"
   }
 ]

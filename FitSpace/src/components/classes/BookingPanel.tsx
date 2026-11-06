@@ -11,7 +11,7 @@ import BookingForm from './BookingForm';
 import PriceBreakdown from './PriceBreakdown';
 import ButtonLink from '../common/ButtonLink';
 import { isSessionValid, useAuthStore } from '../../store/authStore';
-import { countAttendees } from '../../utils/classHelpers';
+import { countAttendees, isClassUpcoming } from '../../utils/classHelpers';
 import { formatDate, formatTimeRange } from '../../utils/formatters';
 import type { FitnessClass } from '../../types';
 import '../../styles/class-details.css';
@@ -48,6 +48,18 @@ function BookingPanel({ fitnessClass, onBooked }: BookingPanelProps) {
   ];
 
   const renderBookingActions = () => {
+    if (!isClassUpcoming(fitnessClass)) {
+      return (
+        <>
+          <p className="form-info" role="status">
+            This class has already taken place.
+          </p>
+          <ButtonLink to="/classes" variant="outline" className="btn-block">
+            Browse upcoming classes
+          </ButtonLink>
+        </>
+      );
+    }
     if (isFull) {
       return (
         <>
@@ -83,6 +95,7 @@ function BookingPanel({ fitnessClass, onBooked }: BookingPanelProps) {
     return (
       <BookingForm
         fitnessClass={fitnessClass}
+        userId={user.id}
         initialName={user.name}
         initialEmail={user.email}
         onBooked={onBooked}
