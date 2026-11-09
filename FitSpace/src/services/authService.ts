@@ -80,3 +80,13 @@ export const resetPassword = async (email: string, newPassword: string): Promise
   }
   account.mockPassword = newPassword;
 };
+
+// Keeps the in-memory account in step with a name change made on the profile page
+export const updateUserName = async (userId: number, name: string): Promise<void> => {
+  const users = await loadUsers();
+  const account = users.find((user) => user.id === userId);
+  if (!account) {
+    throw new Error('We could not find your account. Please sign in again.');
+  }
+  account.name = name.trim();
+};

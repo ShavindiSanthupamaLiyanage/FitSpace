@@ -1,0 +1,218 @@
+/* ============ MY PROFILE ============ */
+/* Both classes are written so this beats .container, which loads later */
+.container.profile-page {
+  max-width: 880px;
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+.profile-page-header {
+  margin-bottom: 24px;
+}
+.profile-page-title {
+  margin: 0 0 4px;
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 800;
+}
+.profile-page-subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+.profile-page .demo-note {
+  margin-top: 20px;
+}
+
+/* ----- completion card ----- */
+.completion-card {
+  display: grid;
+  grid-template-columns: auto 1fr minmax(160px, 240px);
+  align-items: center;
+  gap: 16px 20px;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.completion-card-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #ffe9e1;
+  font-size: 24px;
+  color: var(--color-accent-text);
+}
+.completion-card-done .completion-card-icon {
+  background: var(--color-tint);
+  color: var(--color-primary);
+}
+.completion-card-title {
+  margin: 0 0 2px;
+  font-size: 17px;
+}
+.completion-card-description {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+.completion-card-percent {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+.completion-card-done .completion-card-percent {
+  color: var(--color-primary);
+}
+
+/* ----- main card ----- */
+.profile-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-xl {
+  width: 96px;
+  height: 96px;
+  font-size: 32px;
+}
+.profile-avatar-wrap .avatar {
+  box-shadow: 0 0 0 4px var(--color-surface), var(--shadow-soft);
+}
+.profile-avatar-wrap .profile-camera-button {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-surface);
+  border-radius: 50%;
+  background: var(--color-primary);
+  font-size: 17px;
+  color: #ffffff;
+}
+.profile-avatar-wrap .profile-camera-button:hover {
+  border-color: var(--color-surface);
+  background: var(--color-primary-dark);
+  color: #ffffff;
+}
+.profile-name {
+  margin: 0 0 2px;
+  font-size: 26px;
+}
+.profile-email {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.profile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.profile-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--color-tint);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+}
+.profile-badge-dark {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+.profile-remove-photo {
+  margin-top: 12px;
+  border-color: var(--color-border);
+}
+.profile-identity .form-error {
+  margin-top: 10px;
+}
+
+/* ----- form sections ----- */
+.profile-body {
+  padding: 28px 32px 32px;
+}
+.profile-section + .profile-section {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+.profile-section-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+.profile-section-text {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 20px;
+}
+.profile-form-grid > * {
+  min-width: 0;
+}
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+.profile-actions .btn-light {
+  border-color: var(--color-border);
+}
+
+@media (max-width: 720px) {
+  .completion-card {
+    grid-template-columns: auto 1fr;
+  }
+  .completion-card-progress {
+    grid-column: 1 / -1;
+  }
+  .profile-header {
+    padding: 22px 20px;
+    gap: 18px;
+  }
+  .profile-body {
+    padding: 22px 20px 24px;
+  }
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-actions {
+    flex-direction: column-reverse;
+  }
+  .profile-actions .btn {
+    width: 100%;
+  }
+}

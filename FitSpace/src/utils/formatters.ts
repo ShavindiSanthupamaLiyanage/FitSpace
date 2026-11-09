@@ -59,3 +59,7 @@ export const getInitials = (fullName: string): string =>
 
 export const formatClassCode = (classId: number): string =>
   `#CL-${String(classId).padStart(4, '0')}`;
+
+// "Apr 2026"
+export const formatMonthYear = (isoDate: string): string =>
+  new Date(`${isoDate}T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });

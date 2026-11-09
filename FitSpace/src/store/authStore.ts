@@ -8,6 +8,7 @@ interface AuthState {
   expiresAt: number | null;
   signIn: (session: AuthSession) => void;
   signOut: () => void;
+  updateUserName: (name: string) => void;
 }
 
 // sessionStorage is used (not localStorage) so the session ends when the tab closes.
@@ -21,6 +22,8 @@ export const useAuthStore = create<AuthState>()(
       signIn: (session) =>
         set({ user: session.user, token: session.token, expiresAt: session.expiresAt }),
       signOut: () => set({ user: null, token: null, expiresAt: null }),
+      updateUserName: (name) =>
+        set((state) => (state.user ? { user: { ...state.user, name } } : {})),
     }),
     {
       name: 'fitspace-auth',

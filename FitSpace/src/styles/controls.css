@@ -152,7 +152,8 @@
   border-radius: 999px;
   background: var(--progress-color);
 }
-.progress-bar-high {
+.progress-bar-high,
+.progress-bar-accent {
   --progress-color: var(--color-accent);
 }
 .progress-bar-full {
@@ -204,4 +205,35 @@
   border-color: var(--color-danger);
   background: #fdecec;
   color: var(--color-danger);
+}
+
+/* ============ AVATAR PHOTO ============ */
+.avatar-image {
+  display: block;
+  object-fit: cover;
+}
+
+/* ============ MULTI-SELECT CHIPS ============ */
+.chip-group-toggle .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chip-group-toggle .chip[aria-pressed='true'] {
+  border-color: var(--color-primary);
+  background: var(--color-tint);
+  color: var(--color-primary-dark);
+}
+
+/* ============ DEMO NOTE ============ */
+.demo-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-small);
+  background: var(--color-tint);
+  font-size: 13px;
+  color: var(--color-navy);
 }

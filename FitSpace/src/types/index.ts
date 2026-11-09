@@ -170,3 +170,28 @@ export interface ClassInput {
   price: number;
   description: string;
 }
+
+export type Gender = 'Female' | 'Male' | 'Non-binary' | 'Prefer not to say';
+
+// What is kept for each member besides the account itself (name and email live in users.json)
+export interface UserProfile {
+  userId: number;
+  phone: string;
+  gender: Gender | '';
+  dateOfBirth: string; // ISO date, or '' when not given
+  location: string;
+  interests: ClassCategoryName[];
+  avatarUrl: string; // an image data URL, or '' for the initials avatar
+  joinedAt: string; // ISO date
+}
+
+// The profile form keeps every field as text while the member types
+export interface ProfileFormValues {
+  name: string;
+  phone: string;
+  gender: string;
+  dateOfBirth: string;
+  location: string;
+  interests: ClassCategoryName[];
+  avatarUrl: string;
+}

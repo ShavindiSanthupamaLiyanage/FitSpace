@@ -745,6 +745,14 @@ a {
 .form-input.has-error {
   border-color: var(--color-danger);
 }
+.form-input[readonly] {
+  background: #f1efe9;
+  color: var(--color-muted);
+  cursor: default;
+}
+.form-input[readonly]:focus {
+  background: #f1efe9;
+}
 .form-error {
   color: var(--color-danger);
   font-size: 13px;

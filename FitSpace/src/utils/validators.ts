@@ -101,3 +101,36 @@ export const validateDescription = (value: string): string => {
   if (value.trim().length > 300) return 'Description must be 300 characters or fewer';
   return '';
 };
+
+// Optional: an empty phone number is fine
+export const validatePhone = (value: string): string => {
+  const phone = value.trim();
+  if (!phone) return '';
+  if (!/^\+?[\d\s-]+$/.test(phone)) return 'Use digits, spaces and dashes only';
+  const digitCount = phone.replace(/\D/g, '').length;
+  if (digitCount < 9 || digitCount > 15) return 'Enter a phone number with 9 to 15 digits';
+  return '';
+};
+
+// Optional: an empty date is fine
+export const validateDateOfBirth = (value: string): string => {
+  if (!value) return '';
+  const birthDate = new Date(`${value}T00:00:00`);
+  const today = new Date();
+  if (Number.isNaN(birthDate.getTime()) || birthDate > today) {
+    return 'Date of birth cannot be in the future';
+  }
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const hadBirthdayThisYear =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+  if (!hadBirthdayThisYear) age -= 1;
+
+  if (age < 13) return 'You must be at least 13 years old to join';
+  if (age > 110) return 'Enter a valid date of birth';
+  return '';
+};
+
+export const validateLocation = (value: string): string =>
+  value.trim().length > 60 ? 'Location must be 60 characters or fewer' : '';

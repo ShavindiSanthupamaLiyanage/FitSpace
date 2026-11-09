@@ -1,0 +1,7 @@
+[
+{"userId":1,"phone":"+94 77 555 0101","gender":"","dateOfBirth":"","location":"Colombo, Sri Lanka","interests":[],"avatarUrl":"","joinedAt":"2026-01-10"},
+{"userId":2,"phone":"","gender":"","dateOfBirth":"","location":"","interests":[],"avatarUrl":"","joinedAt":"2026-03-02"},
+{"userId":3,"phone":"+94 77 123 4567","gender":"Female","dateOfBirth":"1998-06-14","location":"Colombo, Sri Lanka","interests":["Yoga","Pilates"],"avatarUrl":"","joinedAt":"2026-04-12"},
+{"userId":4,"phone":"+94 71 234 5678","gender":"","dateOfBirth":"","location":"Negombo, Sri Lanka","interests":["Boxing","HIIT"],"avatarUrl":"","joinedAt":"2026-02-20"},
+{"userId":5,"phone":"+94 76 345 6789","gender":"","dateOfBirth":"","location":"","interests":[],"avatarUrl":"","joinedAt":"2026-05-05"}
+]
