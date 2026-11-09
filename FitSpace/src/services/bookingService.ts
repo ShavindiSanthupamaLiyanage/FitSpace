@@ -96,3 +96,9 @@ export const cancelBooking = async (bookingId: number, userId: number): Promise<
   await releaseSpots(booking.classId, booking.spots);
   booking.status = 'Cancelled';
 };
+
+// Used when an admin deletes a class: its bookings go with it
+export const removeBookingsForClass = async (classId: number): Promise<void> => {
+  const bookings = await loadBookings();
+  bookingsCache = bookings.filter((booking) => booking.classId !== classId);
+};

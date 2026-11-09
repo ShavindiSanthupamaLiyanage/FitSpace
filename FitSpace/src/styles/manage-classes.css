@@ -1,0 +1,297 @@
+/* ============ MANAGE CLASSES (ADMIN) ============ */
+/* Both classes are written so this beats .container, which loads later */
+.container.manage-classes {
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+.manage-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.manage-title {
+  margin: 0 0 4px;
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 800;
+}
+.manage-subtitle {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+/* ----- panel, toolbar, footer ----- */
+.manage-panel {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.manage-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+}
+.manage-search {
+  position: relative;
+  flex: 1 1 280px;
+  max-width: 380px;
+}
+.manage-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+.manage-search .form-group,
+.manage-filters .form-group {
+  margin: 0;
+}
+.manage-search .form-label-row {
+  margin: 0;
+}
+.manage-search .form-input {
+  padding-left: 42px;
+  border-radius: 12px;
+}
+.manage-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.manage-filters .form-input {
+  width: auto;
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.manage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+}
+.manage-footer-text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+.manage-footer-text strong {
+  color: var(--color-navy);
+}
+
+/* ----- table ----- */
+.class-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.class-table th {
+  padding: 12px 20px;
+  background: var(--color-bg);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.class-table td {
+  padding: 14px 20px;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+.class-table tbody tr:hover {
+  background: #fbfaf6;
+}
+
+.class-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+.class-cell-image {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.class-cell-title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.class-cell-code {
+  margin: 0;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+.instructor-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+.schedule-date,
+.schedule-time {
+  margin: 0;
+}
+.schedule-date {
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.schedule-time {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+.capacity-cell {
+  min-width: 130px;
+}
+.capacity-cell-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.capacity-cell-percent {
+  color: var(--color-primary);
+}
+.class-table-price {
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.class-table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* category badges: soft tints taken from the FitSpace palette */
+.category-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.category-badge-yoga {
+  background: var(--color-tint);
+  color: var(--color-primary-dark);
+}
+.category-badge-hiit {
+  background: #ffe9e1;
+  color: #a63a17;
+}
+.category-badge-spin {
+  background: #e4eaf0;
+  color: var(--color-navy-light);
+}
+.category-badge-pilates {
+  background: #e8f3ec;
+  color: #1b5e3f;
+}
+.category-badge-boxing {
+  background: #fdecec;
+  color: #a12626;
+}
+.category-badge-zumba {
+  background: #fdf3d6;
+  color: #7a5400;
+}
+
+/* On phones each row becomes a card, so nothing scrolls sideways */
+@media (max-width: 860px) {
+  .class-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .class-table,
+  .class-table tbody,
+  .class-table tr,
+  .class-table td {
+    display: block;
+  }
+  .class-table tr {
+    padding: 16px 18px;
+    border-top: 1px solid var(--color-border);
+  }
+  .class-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 0;
+    border: 0;
+  }
+  .class-table td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .class-table td.class-table-main-cell {
+    padding-bottom: 12px;
+  }
+  .class-table td.class-table-main-cell::before {
+    content: none;
+  }
+  .class-cell {
+    min-width: 0;
+  }
+  .capacity-cell {
+    flex: 1;
+    max-width: 200px;
+  }
+}
+
+/* ----- form inside the add / edit dialog ----- */
+.class-form-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.class-form-grid > * {
+  grid-column: span 3;
+  min-width: 0;
+}
+.class-form-grid > .class-form-third {
+  grid-column: span 2;
+}
+.class-form-grid > .class-form-wide {
+  grid-column: 1 / -1;
+}
+.class-form-grid .form-group {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .class-form-grid > *,
+  .class-form-grid > .class-form-third {
+    grid-column: 1 / -1;
+  }
+}

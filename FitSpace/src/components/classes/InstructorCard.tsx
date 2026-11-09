@@ -1,4 +1,4 @@
-import { getInitials } from '../../utils/formatters';
+import Avatar from '../common/Avatar';
 import '../../styles/class-details.css';
 
 interface InstructorCardProps {
@@ -9,9 +9,7 @@ interface InstructorCardProps {
 function InstructorCard({ name, role }: InstructorCardProps) {
   return (
     <div className="instructor">
-      <span className="instructor-avatar" aria-hidden="true">
-        {getInitials(name)}
-      </span>
+      <Avatar name={name} size="lg" />
       <div>
         <p className="instructor-name">{name}</p>
         <p className="instructor-role">{role}</p>

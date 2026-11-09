@@ -181,3 +181,47 @@ body.dialog-open {
     width: 100%;
   }
 }
+
+/* ----- wide form dialog (add / edit class) ----- */
+.dialog-wide {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+}
+.dialog-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 20px 16px 24px;
+}
+.dialog-title-large {
+  margin: 0;
+  font-size: 22px;
+}
+.dialog-scroll {
+  flex: 1;
+  padding: 4px 24px 24px;
+  overflow-y: auto;
+}
+.dialog-notice-danger {
+  background: #fdecec;
+  color: #a12626;
+}
+
+@media (max-width: 480px) {
+  .dialog-header {
+    padding: 18px 14px 12px 18px;
+  }
+  .dialog-scroll {
+    padding: 4px 18px 20px;
+  }
+}

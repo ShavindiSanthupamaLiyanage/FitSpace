@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Sarah Jenkins", "years": 8, "specialty": "Yoga" },
+  { "id": 2, "name": "Maya Fernando", "years": 10, "specialty": "Yoga" },
+  { "id": 3, "name": "Daniel Cooper", "years": 7, "specialty": "HIIT" },
+  { "id": 4, "name": "Chris Alvarez", "years": 9, "specialty": "HIIT" },
+  { "id": 5, "name": "Ravi Perera", "years": 6, "specialty": "Spin" },
+  { "id": 6, "name": "Aisha Rahman", "years": 4, "specialty": "Spin" },
+  { "id": 7, "name": "Elena Petrova", "years": 6, "specialty": "Pilates" },
+  { "id": 8, "name": "Hannah Brooks", "years": 5, "specialty": "Pilates" },
+  { "id": 9, "name": "Tharindu Jayasinghe", "years": 11, "specialty": "Boxing" },
+  { "id": 10, "name": "Kasun Wickramasinghe", "years": 8, "specialty": "Boxing" },
+  { "id": 11, "name": "Nimali Silva", "years": 5, "specialty": "Zumba" },
+  { "id": 12, "name": "Lucia Gomez", "years": 7, "specialty": "Zumba" }
+]

@@ -1,9 +1,16 @@
 import { ALMOST_FULL_LIMIT } from '../constants/bookingSettings';
 import { CLASS_CATEGORIES } from '../constants/classCategories';
-import { DEFAULT_SORT, LEVEL_CHIP_OPTIONS, SORT_OPTIONS } from '../constants/classOptions';
+import {
+  CLASS_LEVELS,
+  DEFAULT_SORT,
+  LEVEL_CHIP_OPTIONS,
+  SORT_OPTIONS,
+} from '../constants/classOptions';
 import type {
   CategoryFilter,
+  ClassCategoryName,
   ClassFilters,
+  ClassLevel,
   FitnessClass,
   LevelFilter,
   SortOption,
@@ -97,3 +104,44 @@ export const isClassUpcoming = (
   fitnessClass: Pick<FitnessClass, 'date' | 'startTime'>,
   now: Date = new Date(),
 ): boolean => getClassStart(fitnessClass).getTime() > now.getTime();
+
+// ----- admin form helpers -----
+export const parseClassCategory = (value: string): ClassCategoryName =>
+  CLASS_CATEGORIES.find((category) => category.name === value)?.name ?? CLASS_CATEGORIES[0].name;
+
+export const parseClassLevel = (value: string): ClassLevel =>
+  CLASS_LEVELS.find((level) => level === value) ?? CLASS_LEVELS[0];
+
+// ----- admin dashboard numbers -----
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+export const getFillPercent = (fitnessClass: FitnessClass): number =>
+  fitnessClass.capacity > 0
+    ? Math.round(((fitnessClass.capacity - fitnessClass.spotsLeft) / fitnessClass.capacity) * 100)
+    : 0;
+
+export interface ClassStats {
+  totalClasses: number;
+  classesThisWeek: number;
+  bookedSeats: number;
+  totalSeats: number;
+  bookedRevenue: number;
+}
+
+export const calculateClassStats = (classes: FitnessClass[], now: Date = new Date()): ClassStats => {
+  const weekEnd = now.getTime() + 7 * MS_PER_DAY;
+
+  return classes.reduce<ClassStats>(
+    (stats, fitnessClass) => {
+      const bookedSpots = fitnessClass.capacity - fitnessClass.spotsLeft;
+      return {
+        totalClasses: stats.totalClasses + 1,
+        classesThisWeek: stats.classesThisWeek + (getClassStart(fitnessClass).getTime() <= weekEnd ? 1 : 0),
+        bookedSeats: stats.bookedSeats + bookedSpots,
+        totalSeats: stats.totalSeats + fitnessClass.capacity,
+        bookedRevenue: stats.bookedRevenue + bookedSpots * fitnessClass.price,
+      };
+    },
+    { totalClasses: 0, classesThisWeek: 0, bookedSeats: 0, totalSeats: 0, bookedRevenue: 0 },
+  );
+};

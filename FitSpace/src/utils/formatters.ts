@@ -56,3 +56,6 @@ export const getInitials = (fullName: string): string =>
     .slice(0, 2)
     .map((word) => word[0].toUpperCase())
     .join("");
+
+export const formatClassCode = (classId: number): string =>
+  `#CL-${String(classId).padStart(4, '0')}`;

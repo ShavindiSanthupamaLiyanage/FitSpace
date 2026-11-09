@@ -78,7 +78,9 @@ function ClassDetailsView({ classId }: ClassDetailsViewProps) {
                 </span>
                 <span className="class-hero-meta-item">
                   <MdStar className="class-hero-star" aria-hidden="true" />
-                  {fitnessClass.rating} ({fitnessClass.reviews} reviews)
+                  {fitnessClass.reviews > 0
+                    ? `${fitnessClass.rating} (${fitnessClass.reviews} reviews)`
+                    : 'New class'}
                 </span>
               </p>
             </div>

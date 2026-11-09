@@ -61,6 +61,14 @@ export type CategoryFilter = ClassCategoryName | 'All';
 export type LevelFilter = ClassLevel | 'All';
 export type SortOption = 'soonest' | 'duration' | 'spots' | 'price';
 
+// One record exactly as it is stored in public/data/instructors.json
+export interface Instructor {
+  id: number;
+  name: string;
+  years: number;
+  specialty: ClassCategoryName;
+}
+
 // One record exactly as it is stored in public/data/classes.json
 export interface ClassRecord {
   id: number;
@@ -147,4 +155,18 @@ export interface BookingStats {
   completedTotal: number;
   completedLast30Days: number;
   streakWeeks: number;
+}
+
+export interface ClassInput {
+  title: string;
+  category: ClassCategoryName;
+  level: ClassLevel;
+  instructor: string;
+  room: string;
+  date: string; // ISO date, "YYYY-MM-DD"
+  startTime: string; // 24-hour "HH:MM"
+  durationMins: number;
+  capacity: number;
+  price: number;
+  description: string;
 }

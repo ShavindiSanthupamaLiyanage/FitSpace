@@ -1,4 +1,4 @@
-import type { LevelFilter, SortOption } from '../types';
+import type { ClassLevel, LevelFilter, SortOption } from '../types';
 
 export const CLASSES_PER_PAGE = 6;
 export const DEFAULT_SORT: SortOption = 'soonest';
@@ -15,4 +15,16 @@ export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'duration', label: 'Shortest first' },
   { value: 'spots', label: 'Most spots left' },
   { value: 'price', label: 'Price: low to high' },
+];
+
+export const ADMIN_CLASSES_PER_PAGE = 10;
+export const CLASS_LEVELS: ClassLevel[] = ['Beginner', 'Intermediate', 'Advanced'];
+
+export const CLASS_ROOMS: string[] = [
+  'Studio A',
+  'Studio B',
+  'Studio C',
+  'Main Hall',
+  'Cycle Room',
+  'Boxing Ring',
 ];

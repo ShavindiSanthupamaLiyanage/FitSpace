@@ -15,7 +15,7 @@ const toFitnessClass = ({ dayOffset, ...details }: ClassRecord): FitnessClass =>
   date: getIsoDateFromToday(dayOffset),
 });
 
-const loadClasses = async (): Promise<FitnessClass[]> => {
+export const loadClasses = async (): Promise<FitnessClass[]> => {
   if (classesCache === null) {
     let response: Response;
     try {

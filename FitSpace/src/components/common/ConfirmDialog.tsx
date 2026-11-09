@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from 'react';
+import { useId, useRef } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import type { IconType } from 'react-icons';
@@ -9,6 +9,7 @@ import {
   MdWarningAmber,
 } from 'react-icons/md';
 import Button from './Button';
+import { useDialogBehavior } from '../../hooks/useDialogBehavior';
 import type { ButtonVariant, DialogTone } from '../../types';
 import '../../styles/dialog.css';
 
@@ -40,18 +41,6 @@ const confirmButtonVariants: Record<DialogTone, ButtonVariant> = {
   danger: 'danger',
 };
 
-const FOCUSABLE_SELECTOR = [
-  'button:not(:disabled)',
-  'input:not(:disabled)',
-  'select:not(:disabled)',
-  'textarea:not(:disabled)',
-  'a[href]',
-  '[tabindex]:not([tabindex="-1"])',
-].join(',');
-
-const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
-  container ? Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)) : [];
-
 // Reusable popup for "Are you sure?" moments: logging out, booking, cancelling, deleting...
 function ConfirmDialog({
   open,
@@ -72,55 +61,7 @@ function ConfirmDialog({
   const titleId = useId();
   const messageId = useId();
 
-  // Runs only when the dialog opens or closes: move focus in, lock page scroll,
-  // and give focus back to the button that opened the dialog
-  useEffect(() => {
-    if (!open) return undefined;
-
-    const previouslyFocused =
-      document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    dialogRef.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus();
-    document.body.classList.add('dialog-open');
-
-    return () => {
-      document.body.classList.remove('dialog-open');
-      previouslyFocused?.focus();
-    };
-  }, [open]);
-
-  // Keyboard: Esc closes the dialog, Tab stays inside it
-  useEffect(() => {
-    if (!open) return undefined;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        if (!loading) onCancel();
-        return;
-      }
-      if (event.key !== 'Tab') return;
-
-      const focusable = getFocusableElements(dialogRef.current);
-      if (focusable.length === 0) {
-        event.preventDefault(); // everything is disabled while loading
-        return;
-      }
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const focusIsOutside = !dialogRef.current?.contains(document.activeElement);
-
-      if (event.shiftKey && (document.activeElement === first || focusIsOutside)) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && (document.activeElement === last || focusIsOutside)) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, loading, onCancel]);
+  useDialogBehavior({ open, dialogRef, onClose: onCancel, canClose: !loading });
 
   if (!open) return null;
 

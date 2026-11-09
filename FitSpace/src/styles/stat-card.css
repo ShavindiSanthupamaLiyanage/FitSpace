@@ -5,7 +5,14 @@
   gap: 16px;
   margin-bottom: 28px;
 }
+.stat-grid-four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .stat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
   padding: 20px 22px;
   border: 1px solid var(--color-border);
   border-radius: 20px;
@@ -15,6 +22,21 @@
 .stat-card-dark {
   border-color: var(--color-navy);
   background: var(--color-navy);
+}
+.stat-card-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--color-tint);
+  font-size: 22px;
+  color: var(--color-primary);
+}
+.stat-card-content {
+  flex: 1;
+  min-width: 0;
 }
 .stat-card-label {
   margin: 0 0 6px;
@@ -26,13 +48,14 @@
 }
 .stat-card-value-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 10px;
+  gap: 4px 10px;
   margin: 0;
 }
 .stat-card-value {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 800;
   line-height: 1.1;
   color: var(--color-navy);
@@ -56,7 +79,15 @@
 .stat-card-dark .stat-card-note-coral {
   color: var(--color-accent);
 }
+.stat-card .progress-bar {
+  margin-top: 10px;
+}
 
+@media (max-width: 1000px) {
+  .stat-grid-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (max-width: 720px) {
   .stat-grid {
     grid-template-columns: 1fr;
