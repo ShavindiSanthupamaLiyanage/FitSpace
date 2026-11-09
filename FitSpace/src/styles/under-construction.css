@@ -1,0 +1,344 @@
+/* ============ UNDER CONSTRUCTION ============ */
+.under-construction {
+  padding: 72px 0 88px;
+  overflow: hidden; /* the tilted photo and the floating card must never cause sideways scrolling */
+  background: var(--color-bg);
+}
+.uc-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: center;
+  gap: 64px;
+}
+
+/* ----- left: photo card ----- */
+.uc-visual {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 28px;
+  justify-self: center;
+}
+.uc-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  border: 6px solid var(--color-surface);
+  border-radius: 36px;
+  background: var(--color-navy);
+  box-shadow: var(--shadow-strong);
+  transform: rotate(-2deg);
+}
+.uc-photo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.uc-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 42, 59, 0) 45%, rgba(14, 42, 59, 0.88) 100%);
+}
+.uc-photo-caption {
+  position: absolute;
+  right: 20px;
+  bottom: 56px;
+  left: 20px;
+  color: #ffffff;
+}
+.uc-photo-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.uc-photo-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--color-accent);
+  font-size: 24px;
+  color: var(--color-navy);
+}
+.uc-photo-label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.uc-photo-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.uc-photo-pill {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ----- floating countdown card ----- */
+/* .launch-countdown {
+  position: absolute;
+  right: -20px;
+  bottom: -28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px;
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-strong);
+}
+.launch-countdown-icon {
+  display: grid;
+  font-size: 26px;
+  color: var(--color-primary);
+}
+.launch-countdown-label {
+  margin: 0 0 2px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.launch-countdown-time {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: var(--color-navy);
+} */
+
+/* ----- right: the message ----- */
+.uc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+.uc-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(11, 122, 130, 0.2);
+}
+.uc-title {
+  margin: 0 0 20px;
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 0.98;
+}
+.uc-title-accent {
+  display: block;
+  color: var(--color-accent-text);
+}
+.uc-text {
+  max-width: 480px;
+  margin: 0 0 28px;
+  font-size: 18px;
+  color: var(--color-muted);
+}
+
+/* ----- progress card ----- */
+.uc-progress-card {
+  margin-bottom: 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+.uc-progress-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.uc-progress-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.uc-progress-percent {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 800;
+  color: var(--color-accent-text);
+}
+.uc-progress-card .progress-bar {
+  height: 10px;
+}
+.uc-progress-quote {
+  margin: 14px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+/* ----- three highlights ----- */
+.uc-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+.uc-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.uc-highlight-icon {
+  font-size: 22px;
+  color: var(--color-primary);
+}
+
+/* ----- notify form ----- */
+/* .notify-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.notify-field {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.notify-field-icon {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 22px;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+.notify-field .form-group {
+  margin: 0;
+}
+.notify-field .form-label-row {
+  margin: 0;
+}
+.notify-field .form-input {
+  padding-left: 48px;
+  border-radius: 999px;
+  background: var(--color-surface);
+}
+.notify-form .btn {
+  flex-shrink: 0;
+} */
+
+/* ----- social links -----
+.uc-follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.uc-follow-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.uc-follow-list {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.uc-social-link {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-tint);
+  font-size: 17px;
+  color: var(--color-navy);
+  transition: background 0.2s;
+}
+.uc-social-link:hover {
+  background: var(--color-accent);
+} */
+
+@media (prefers-reduced-motion: reduce) {
+  .uc-social-link {
+    transition: none;
+  }
+}
+
+/* On tablets and phones the message comes first and the photo below it */
+@media (max-width: 960px) {
+  .under-construction {
+    padding: 48px 0 64px;
+  }
+  .uc-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .uc-visual {
+    order: 2;
+    max-width: 380px;
+  }
+  .launch-countdown {
+    right: -8px;
+  }
+}
+@media (max-width: 480px) {
+  .notify-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .launch-countdown {
+    padding: 12px 18px;
+  }
+  .uc-photo-title {
+    font-size: 22px;
+  }
+}

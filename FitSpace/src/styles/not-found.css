@@ -1,0 +1,163 @@
+/* ============ 404 NOT FOUND ============ */
+.not-found {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 80px;
+  background-color: var(--color-bg);
+  background-image: radial-gradient(rgba(14, 42, 59, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* faint decorative icons at the edges, hidden on small screens */
+.not-found-decor {
+  position: absolute;
+  font-size: 64px;
+  color: rgba(11, 122, 130, 0.14);
+  pointer-events: none;
+}
+.not-found-decor-top {
+  top: 56px;
+  left: 2%;
+}
+.not-found-decor-bottom {
+  bottom: 96px;
+  left: 3%;
+}
+
+.not-found-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 56px;
+}
+
+/* ----- left: the message ----- */
+.not-found-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+.not-found-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.25);
+}
+.not-found-title {
+  margin: 0 0 20px;
+  font-size: clamp(46px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -2.5px;
+}
+.not-found-title-accent {
+  display: block;
+  color: var(--color-primary);
+}
+.not-found-text {
+  max-width: 480px;
+  margin: 0 0 32px;
+  font-size: 18px;
+  color: var(--color-muted);
+}
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--color-border);
+}
+.not-found-suggestions-label {
+  margin: 28px 0 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ----- right: photo card with the glass tip ----- */
+.not-found-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  justify-self: center;
+  overflow: hidden;
+  border: 6px solid var(--color-surface);
+  border-radius: 32px;
+  background: var(--color-navy);
+  box-shadow: var(--shadow-strong);
+}
+.not-found-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.not-found-tip {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(14, 42, 59, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+}
+.not-found-tip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.not-found-tip-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  font-size: 18px;
+}
+.not-found-tip-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+.not-found-tip-text {
+  margin: 0;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  color: #e6eef1;
+}
+
+@media (max-width: 900px) {
+  .not-found {
+    padding: 48px 0 56px;
+  }
+  .not-found-decor {
+    display: none;
+  }
+  .not-found-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .not-found-card {
+    max-width: 380px;
+  }
+}
+@media (max-width: 480px) {
+  .not-found-actions .btn {
+    width: 100%;
+  }
+}

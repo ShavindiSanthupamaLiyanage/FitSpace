@@ -659,49 +659,6 @@ a {
   .steps-grid { grid-template-columns: 1fr; }
 }
 
-/* ============ PAGE (placeholder / 404) ============ */
-.page-center {
-  min-height: 62vh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 64px 24px;
-}
-.page-center h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 800;
-}
-.page-center p {
-  color: var(--color-muted);
-  max-width: 480px;
-  margin: 0 auto 28px;
-  font-size: 17px;
-}
-.construction-stripe {
-  width: 96px;
-  height: 12px;
-  margin: 0 auto 28px;
-  border-radius: 999px;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--color-accent) 0,
-    var(--color-accent) 10px,
-    var(--color-navy) 10px,
-    var(--color-navy) 20px
-  );
-}
-.error-code {
-  font-family: var(--font-display);
-  font-size: clamp(100px, 22vw, 180px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -4px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-navy));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* ============ FORMS ============ */
 .form-group {
   margin-bottom: 18px;

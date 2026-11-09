@@ -25,6 +25,10 @@
   border-color: var(--color-navy);
   color: #ffffff;
 }
+.chip-link {
+  display: inline-block;
+  text-decoration: none;
+}
 
 /* Joined pill toggle, used for Upcoming / Past Classes */
 .chip-group-segmented {

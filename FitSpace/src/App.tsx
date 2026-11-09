@@ -9,7 +9,7 @@ import MyBookingsPage from './pages/MyBookingsPage';
 import ProfilePage from './pages/ProfilePage';
 import ManageClassesPage from './pages/ManageClassesPage';
 import NotFoundPage from './pages/NotFoundPage';
-import UnderConstruction from './components/common/UnderConstruction';
+import UnderConstruction from './components/UnderConstruction';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 function App() {
